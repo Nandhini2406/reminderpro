@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
@@ -14,6 +16,8 @@ class NotificationPlugin {
   NotificationPlugin() {
     init();
   }
+
+
   Future onNotificationSelected(String payload) {
     return showDialog(
         context: Get.context!,
@@ -71,7 +75,7 @@ class NotificationPlugin {
       channelDescription: task.taskDesc,
       importance: Importance.max,
       priority: Priority.high,
-      sound: RawResourceAndroidNotificationSound('slow_spring_board'),
+      sound: const RawResourceAndroidNotificationSound('slow_spring_board'),
       enableLights: true,
       enableVibration: true,
       ledColor: Color.fromARGB(255, 255, 0, 255),
@@ -98,7 +102,7 @@ class NotificationPlugin {
     );
   }
 
-  Future cancelTaskNotifucation(int id) async {
+  Future<void> cancelTaskNotifucation(int id) async {
     await fNotification.cancel(id);
   }
 

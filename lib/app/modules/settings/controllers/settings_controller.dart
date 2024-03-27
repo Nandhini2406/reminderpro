@@ -8,10 +8,10 @@ class SettingsController extends GetxController {
   final userData = GetStorage();
 
   // store selectedTheme
-  late final String selectedTheme;
+  late String selectedTheme;
 
   // store state of drinkWaterNotify
-  late final bool drinkWater;
+  late bool drinkWater;
 
   // instance of Notification service
   NotificationPlugin nPlugin = NotificationPlugin();
@@ -41,10 +41,12 @@ class SettingsController extends GetxController {
   toggleWater(bool value) async {
     drinkWater = value;
     userData.write('drinkWater', value);
-    if (value == true) {
+    if (value) {
       await nPlugin.showNotification();
+      update();
     } else {
-      nPlugin.cancelDrinkwaterNotifucation();
+      await nPlugin.cancelDrinkwaterNotifucation();
+      update();
     }
     update();
   }

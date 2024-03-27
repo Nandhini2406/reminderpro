@@ -35,19 +35,19 @@ class HomeController extends GetxController
   // bools for dashboard view
   bool isCurrentTaskPresent = false;
   bool isUpcommingTaskPresent = false;
-  late  Task currentTask;
-  late final Task upcomingTask;
+  late Task currentTask;
+  late Task upcomingTask;
 
   // controllers and var for bottomSheet TextFeilds
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
-  late final String selectedIcon;
-  late final DateTime selectedDate;
-  late final TimeOfDay selectedTime;
-  late final String setTime, setDate;
-  late final String hour, minute, time;
+  late String selectedIcon;
+  late DateTime selectedDate;
+  late TimeOfDay selectedTime;
+  late String setTime, setDate;
+  late String hour, minute, time;
   bool isRepeat = false;
   List<String> icons = [
     'assets/icons/alarm-clock.svg',
@@ -200,8 +200,6 @@ class HomeController extends GetxController
     controllerReset();
     taskRoutine();
     update([1, true]);
-    Get.back();
-    Get.back();
     Get.back();
   }
 
@@ -387,23 +385,49 @@ class HomeController extends GetxController
   }
 
   // function to set upcomingTask
+  // setUpcomingTask() {
+  //   isUpcommingTaskPresent = false;
+  //   upcomingTask;
+  //   var cDt = DateTime.now();
+  //   if (todayTasks.length != 0) {
+  //     for (int i = 0; i < todayTasks.length; i++) {
+  //       if (todayTasks[i].taskDate.compareTo(cDt) > 0) {
+  //         if (isCurrentTaskPresent) {
+  //           var index = todayTasks.indexOf(currentTask);
+  //           upcomingTask = todayTasks.elementAt(index + 1);
+  //         } else {
+  //           upcomingTask = todayTasks.first;
+  //         }
+  //         isUpcommingTaskPresent = true;
+  //         break;
+  //       }
+  //     }
+  //   }
+  //   update([3, true]);
+  // }
+
+// function to set upcomingTask
   setUpcomingTask() {
     isUpcommingTaskPresent = false;
-    upcomingTask;
+    Task? tempUpcomingTask; // Initialize as nullable Task
     var cDt = DateTime.now();
-    if (todayTasks.length != 0) {
+    if (todayTasks.isNotEmpty) {
       for (int i = 0; i < todayTasks.length; i++) {
-        if (todayTasks[i].taskDate.compareTo(cDt) > 0) {
+        if (todayTasks[i].taskDate.isAfter(cDt)) {
           if (isCurrentTaskPresent) {
             var index = todayTasks.indexOf(currentTask);
-            upcomingTask = todayTasks.elementAt(index + 1);
+            tempUpcomingTask = todayTasks.elementAt(index + 1);
           } else {
-            upcomingTask = todayTasks.first;
+            tempUpcomingTask = todayTasks.first;
           }
           isUpcommingTaskPresent = true;
           break;
         }
       }
+    }
+    // Update upcomingTask only if a valid task is found
+    if (tempUpcomingTask != null) {
+      upcomingTask = tempUpcomingTask;
     }
     update([3, true]);
   }

@@ -78,11 +78,12 @@ class SettingsView extends GetView<SettingsController> {
                 ),
               ),
               trailing: GetBuilder<SettingsController>(
-                init: controller,
                 builder: (_) {
                   return Switch(
                     value: controller.drinkWater,
-                    onChanged: controller.toggleWater,
+                    onChanged: (value) {
+                      controller.toggleWater(value);
+                    },
                     activeTrackColor:
                         Theme.of(context).primaryColor.withOpacity(0.5),
                     activeColor: Theme.of(context).primaryColor,

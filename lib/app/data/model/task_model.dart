@@ -16,12 +16,12 @@ class Task {
   });
 
   Task.fromJson(Map<String, dynamic> json)
-      : taskImage = json['taskImage'],
-        taskTitle = json['taskTitle'],
-        taskDesc = json['taskDesc'],
-        startTime = json['startTime'],
-        taskDate = json['taskDate'],
-        isRepeat = json['isRepeat'];
+      : taskImage = json['taskImage'] ?? '',
+        taskTitle = json['taskTitle'] ?? '',
+        taskDesc = json['taskDesc'] ?? '',
+        startTime = json['startTime'] ?? '',
+        taskDate = DateTime.parse(json['taskDate'] ?? ''),
+        isRepeat = json['isRepeat'] ?? false;
 
   Map<String, dynamic> toJson() => {
         'taskImage': taskImage,
