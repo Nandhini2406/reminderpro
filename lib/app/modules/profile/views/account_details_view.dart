@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+
 import '/app/global_widgets/input_text_feild.dart';
 import '/app/global_widgets/proceed_button.dart';
 import '/app/modules/profile/controllers/profile_controller.dart';
@@ -75,6 +75,7 @@ class AccountDetailsView extends GetView<ProfileController> {
                 buttonColor: Theme.of(context).primaryColor.withOpacity(0.9),
                 onPress: () {
                   controller.editUser();
+                  Navigator.pop(context);
                 },
                 title: 'Save',
               ),

@@ -19,16 +19,16 @@ class ProfileController extends GetxController {
   late TextEditingController emailController;
 
   // list of state for gender toggleButton
-  late final List<bool> selectedToggleGender;
+  late List<bool> selectedToggleGender;
 
   // userData
-  late final String fName;
-  late final String lName;
-  late final String email;
-  late final bool isMale;
+  late String fName;
+  late String lName;
+  late String email;
+  late bool isMale;
 
   // instance of user model
-  late final User user;
+  late User user;
 
   //function to toggle gender in edit account
   onToggledGender(int index) {
@@ -47,7 +47,7 @@ class ProfileController extends GetxController {
     update([5, true]);
   }
 
-  // FirstName validator
+  /// [ FirstName validator ]
   String? fNameValidator(String value) {
     if (value.isEmpty) {
       return 'Enter your first name';
@@ -58,16 +58,18 @@ class ProfileController extends GetxController {
       return 'Enter a valid name';
   }
 
-  // LastName validator
+  /// [ LastName validator ]
   String? lNameValidator(String value) {
     if (value.isEmpty) {
-      return 'Fill this Field';
-    } else {
-      return 'Enter a valid name';
+      return null;
     }
+    if (value.isAlphabetOnly) {
+      return null;
+    } else
+      return 'Enter a valid name';
   }
 
-  // Email validator
+  /// [ Email validator ]
   String? emailValidator(String value) {
     if (value.isEmpty) {
       return 'Enter your email';
@@ -81,13 +83,16 @@ class ProfileController extends GetxController {
   // function to validate creds
   bool validateCreds() {
     bool validated = false;
+    print('Prionting');
     if (fNameValidator(firstNameController.text) == null &&
         lNameValidator(lastNameController.text) == null &&
         emailValidator(emailController.text) == null &&
         selectedToggleGender.contains(true)) {
       validated = true;
+      print('Prionting.... yes');
     } else {
       validated = false;
+      print('Prionting.... Noooo');
     }
     return validated;
   }
@@ -134,7 +139,9 @@ class ProfileController extends GetxController {
 
   // function to apply edited user details
   editUser() {
+    print('not Saving.....');
     if (validateCreds()) {
+      print('Saving.....');
       HomeController c = Get.put(HomeController());
       user = User(
           firstName: firstNameController.text,

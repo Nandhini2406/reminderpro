@@ -11,22 +11,21 @@ class PastTasksView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Past Tasks',
+          style: kSubHeadTextStyle.copyWith(
+              color: Theme.of(context).primaryColorDark),
+        ),
+      ),
       body: Container(
         height: Get.height,
         width: Get.width,
         color: Theme.of(context).scaffoldBackgroundColor,
-        //padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+        // padding: EdgeInsets.symmetric(horizontal: 6, vertical: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.only(top: 50, left: 25, right: 25),
-              child: Text(
-                'Past Tasks',
-                style: kSubHeadTextStyle.copyWith(
-                    color: Theme.of(context).primaryColorDark),
-              ),
-            ),
             SizedBox(height: Get.height * 0.012),
             GetBuilder<HomeController>(
               id: 1,

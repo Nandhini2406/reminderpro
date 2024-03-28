@@ -14,6 +14,25 @@ class AllTasksView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'All Tasks',
+          style: kSubHeadTextStyle.copyWith(
+              color: Theme.of(context).primaryColorDark),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              FontAwesomeIcons.history,
+              color: Theme.of(context).primaryColor,
+              size: 24,
+            ),
+            onPressed: () {
+              Get.to(() => PastTasksView());
+            },
+          ),
+        ],
+      ),
       body: Container(
         height: Get.height,
         width: Get.width,
@@ -22,29 +41,6 @@ class AllTasksView extends GetView<HomeController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.only(top: 50, left: 25, right: 25),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'All Tasks',
-                    style: kSubHeadTextStyle.copyWith(
-                        color: Theme.of(context).primaryColorDark),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      FontAwesomeIcons.history,
-                      color: Theme.of(context).primaryColor,
-                      size: 24,
-                    ),
-                    onPressed: () {
-                      Get.to(() => PastTasksView());
-                    },
-                  ),
-                ],
-              ),
-            ),
             SizedBox(height: Get.height * 0.012),
             GetBuilder<HomeController>(
               id: 1,

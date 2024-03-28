@@ -30,7 +30,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
                 height: 80.0,
               ),
               Text(
-                'Taskly',
+                'Reminder Pro',
                 style: kHeadTextStyle.copyWith(
                   color: primaryGrey,
                 ),

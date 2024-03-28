@@ -9,115 +9,116 @@ import '/app/theme/text_theme.dart';
 class TodayTaskView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: Get.height,
-      width: Get.width,
-      color: Theme.of(context).scaffoldBackgroundColor,
-      //padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 50, left: 25, right: 25),
-            child: Text(
-              'Today\'s Tasks',
-              style: kSubHeadTextStyle.copyWith(
-                  color: Theme.of(context).primaryColorDark),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Today\'s Tasks',
+          style: kSubHeadTextStyle.copyWith(
+              color: Theme.of(context).primaryColorDark),
+        ),
+      ),
+      body: Container(
+        height: Get.height,
+        width: Get.width,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        //padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: Get.height * 0.012),
+            GetBuilder<HomeController>(
+              id: 1,
+              builder: (controller) {
+                return Expanded(
+                  child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      final task = controller.todayTasks[index];
+                      return Slidable(
+                        // actionPane: SlidableDrawerActionPane(),
+                        // actionExtentRatio: 0.2,
+                        controller: controller.slideC,
+                        child: ExpandedContainer(
+                          icon: task.taskImage,
+                          title: task.taskTitle,
+                          time: task.startTime,
+                          desc: task.taskDesc,
+                        ),
+                        startActionPane: ActionPane(
+                          motion: const ScrollMotion(),
+                          extentRatio: 0.2,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  bottom: Get.width * 0.05,
+                                  left: Get.width * 0.07),
+                              child: Container(
+                                padding: EdgeInsets.all(0),
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context).primaryColorLight,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: IconButton(
+                                    icon: Icon(
+                                      Icons.edit,
+                                      size: 26,
+                                      color: Theme.of(context).primaryColorDark,
+                                    ),
+                                    onPressed: () {
+                                      controller.slideC.close();
+                                      Slidable.of(context)?.close();
+                                      controller.preUpdateTask(task);
+                                      showModalBottomSheet(
+                                        backgroundColor: Colors.transparent,
+                                        isScrollControlled: true,
+                                        context: context,
+                                        builder: (context) {
+                                          return BottomSheetContent(
+                                            buttonText: 'Update Task',
+                                            onSubmit: () {
+                                              controller.updateTask(task);
+                                            },
+                                          );
+                                        },
+                                      );
+                                    }),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  bottom: Get.width * 0.05,
+                                  right: Get.width * 0.07),
+                              child: Container(
+                                padding: EdgeInsets.all(0),
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context).primaryColorLight,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: IconButton(
+                                    icon: Icon(
+                                      Icons.delete,
+                                      size: 26,
+                                      color: Theme.of(context).primaryColorDark,
+                                    ),
+                                    onPressed: () {
+                                      controller.slideC.close();
+                                      Slidable.of(context)?.close();
+                                      controller.customDialogDel(context, task);
+                                    }),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    itemCount: controller.todayTasks.length,
+                  ),
+                );
+              },
             ),
-          ),
-          SizedBox(height: Get.height * 0.012),
-          GetBuilder<HomeController>(
-            id: 1,
-            builder: (controller) {
-              return Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    final task = controller.todayTasks[index];
-                    return Slidable(
-                      // actionPane: SlidableDrawerActionPane(),
-                      // actionExtentRatio: 0.2,
-                      controller: controller.slideC,
-                      child: ExpandedContainer(
-                        icon: task.taskImage,
-                        title: task.taskTitle,
-                        time: task.startTime,
-                        desc: task.taskDesc,
-                      ),
-                      startActionPane: ActionPane(
-                        motion: const ScrollMotion(),
-                        extentRatio: 0.2,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                bottom: Get.width * 0.05,
-                                left: Get.width * 0.07),
-                            child: Container(
-                              padding: EdgeInsets.all(0),
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColorLight,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: IconButton(
-                                  icon: Icon(
-                                    Icons.edit,
-                                    size: 26,
-                                    color: Theme.of(context).primaryColorDark,
-                                  ),
-                                  onPressed: () {
-                                    controller.slideC.close();
-                                    Slidable.of(context)?.close();
-                                    controller.preUpdateTask(task);
-                                    showModalBottomSheet(
-                                      backgroundColor: Colors.transparent,
-                                      isScrollControlled: true,
-                                      context: context,
-                                      builder: (context) {
-                                        return BottomSheetContent(
-                                          buttonText: 'Update Task',
-                                          onSubmit: () {
-                                            controller.updateTask(task);
-                                          },
-                                        );
-                                      },
-                                    );
-                                  }),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                bottom: Get.width * 0.05,
-                                right: Get.width * 0.07),
-                            child: Container(
-                              padding: EdgeInsets.all(0),
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColorLight,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: IconButton(
-                                  icon: Icon(
-                                    Icons.delete,
-                                    size: 26,
-                                    color: Theme.of(context).primaryColorDark,
-                                  ),
-                                  onPressed: () {
-                                    controller.slideC.close();
-                                    Slidable.of(context)?.close();
-                                    controller.customDialogDel(context, task);
-                                  }),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                  itemCount: controller.todayTasks.length,
-                ),
-              );
-            },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

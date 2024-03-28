@@ -71,7 +71,7 @@ class HomeController extends GetxController
   ];
 
   // temp var to create each task
-  late final Task tempTask;
+  late Task tempTask;
 
   // task lists
   List<Task> allTasks = [];
@@ -180,7 +180,7 @@ class HomeController extends GetxController
       selectedTime.minute,
     );
 
-    tempTask = Task(
+    Task tempTask = Task(
       taskImage: selectedIcon,
       taskTitle: titleController.text,
       taskDesc: descController.text,

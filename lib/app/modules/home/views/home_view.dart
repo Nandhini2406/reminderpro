@@ -25,6 +25,7 @@ class HomeView extends GetView<HomeController> {
                 buttonText: 'Create Task',
                 onSubmit: () {
                   controller.addTask();
+                  Navigator.pop(context);
                 },
               );
             },
