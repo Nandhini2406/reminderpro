@@ -7,7 +7,7 @@ import '/app/modules/settings/controllers/settings_controller.dart';
 import '/app/theme/app_theme.dart';
 
 class SplashScreenController extends GetxController
-    with SingleGetTickerProviderMixin {
+    with GetSingleTickerProviderStateMixin {
   // animation controller for lottie
   late AnimationController animationController;
 

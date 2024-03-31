@@ -6,6 +6,8 @@ import '/app/theme/color_theme.dart';
 import '/app/theme/text_theme.dart';
 
 class SplashScreenView extends GetView<SplashScreenController> {
+  const SplashScreenView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,16 +21,14 @@ class SplashScreenView extends GetView<SplashScreenController> {
                 child: Lottie.asset(
                   'assets/lottie/work-from-home.json',
                   controller: _.animationController,
-                  frameRate: FrameRate(60),
+                  frameRate: const FrameRate(60),
                   repeat: true,
                   onLoaded: (composition) {
-                    _.animationController..duration = composition.duration;
+                    _.animationController.duration = composition.duration;
                   },
                 ),
               ),
-              SizedBox(
-                height: 80.0,
-              ),
+              const SizedBox(height: 80.0),
               Text(
                 'Reminder Pro',
                 style: kHeadTextStyle.copyWith(

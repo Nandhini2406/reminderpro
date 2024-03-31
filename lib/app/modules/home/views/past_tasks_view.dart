@@ -88,6 +88,12 @@ class PastTasksView extends GetView<HomeController> {
                                     }),
                               ),
                             ),
+                          ],
+                        ),
+                        endActionPane: ActionPane(
+                          motion: const ScrollMotion(),
+                          extentRatio: 0.2,
+                          children: [
                             Padding(
                               padding: EdgeInsets.only(
                                   bottom: Get.width * 0.05,
@@ -100,16 +106,17 @@ class PastTasksView extends GetView<HomeController> {
                                     color: Theme.of(context).primaryColorLight,
                                     borderRadius: BorderRadius.circular(10)),
                                 child: IconButton(
-                                    icon: Icon(
-                                      Icons.delete,
-                                      size: 26,
-                                      color: Theme.of(context).primaryColorDark,
-                                    ),
-                                    onPressed: () {
-                                      controller.slideC.close();
-                                      Slidable.of(context)?.close();
-                                      controller.customDialogDel(context, task);
-                                    }),
+                                  icon: Icon(
+                                    Icons.delete,
+                                    size: 26,
+                                    color: Theme.of(context).primaryColorDark,
+                                  ),
+                                  onPressed: () {
+                                    controller.slideC.close();
+                                    Slidable.of(context)?.close();
+                                    controller.customDialogDel(context, task);
+                                  },
+                                ),
                               ),
                             ),
                           ],

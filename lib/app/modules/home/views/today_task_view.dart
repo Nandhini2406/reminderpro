@@ -84,6 +84,12 @@ class TodayTaskView extends GetView<HomeController> {
                                     }),
                               ),
                             ),
+                          ],
+                        ),
+                        endActionPane: ActionPane(
+                          motion: const ScrollMotion(),
+                          extentRatio: 0.2,
+                          children: [
                             Padding(
                               padding: EdgeInsets.only(
                                   bottom: Get.width * 0.05,
