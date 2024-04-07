@@ -15,10 +15,16 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     Size size = Get.size;
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Profile',
+          style: kSubHeadTextStyle.copyWith(fontWeight: FontWeight.bold),
+        ),
+      ),
       body: Container(
         height: size.height,
         width: size.width,
-        padding: EdgeInsets.only(top: size.height * 0.1),
+        padding: EdgeInsets.only(top: size.height * 0.01),
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
         ),

@@ -53,14 +53,6 @@ class AllTasksView extends GetView<HomeController> {
                         // actionPane: SlidableBehindActionPane(),
                         // actionExtentRatio: 0.2,
                         controller: controller.slideC,
-                        child: ExpandedContainer(
-                          icon: task.taskImage,
-                          title: task.taskTitle,
-                          time: task.startTime,
-                          desc: task.taskDesc,
-                          ifDate: true,
-                          date: DateFormat.yMMMd().format(task.taskDate),
-                        ),
                         startActionPane: ActionPane(
                           motion: const ScrollMotion(),
                           extentRatio: 0.2,
@@ -134,6 +126,14 @@ class AllTasksView extends GetView<HomeController> {
                               ),
                             ),
                           ],
+                        ),
+                        child: ExpandedContainer(
+                          icon: task.taskImage,
+                          title: task.taskTitle,
+                          time: task.startTime,
+                          desc: task.taskDesc,
+                          ifDate: true,
+                          date: DateFormat.yMMMd().format(task.taskDate),
                         ),
                       );
                     },

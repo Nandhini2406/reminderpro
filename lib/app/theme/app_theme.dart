@@ -32,6 +32,7 @@ final appThemeData = {
     colorScheme: ColorScheme.dark(
       primary: secondaryYellow,
     ),
+    appBarTheme: AppBarTheme(backgroundColor: primaryDBlue),
   ),
   AppTheme.RedLight: ThemeData(
     brightness: Brightness.light,
@@ -52,6 +53,7 @@ final appThemeData = {
     colorScheme: ColorScheme.dark(
       primary: primaryRed,
     ),
+    appBarTheme: AppBarTheme(backgroundColor: primaryGrey),
   ),
   AppTheme.TealLight: ThemeData(
     brightness: Brightness.light,
@@ -72,6 +74,7 @@ final appThemeData = {
     colorScheme: ColorScheme.dark(
       primary: primaryTeal,
     ),
+    appBarTheme: AppBarTheme(backgroundColor: secondaryGrey),
   ),
   AppTheme.GreenLight: ThemeData(
     brightness: Brightness.light,
@@ -92,5 +95,6 @@ final appThemeData = {
     colorScheme: ColorScheme.dark(
       primary: primaryGreen,
     ),
+    appBarTheme: AppBarTheme(backgroundColor: secondaryGrey),
   ),
 };

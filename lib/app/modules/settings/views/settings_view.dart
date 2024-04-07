@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import '/app/modules/settings/controllers/settings_controller.dart';
-import '/app/theme/text_theme.dart';
+import '../controllers/settings_controller.dart';
+import '../../../theme/text_theme.dart';
 
 class SettingsView extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
     Size size = Get.size;
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Settings',
+          style: kSubHeadTextStyle.copyWith(fontWeight: FontWeight.bold),
+        ),
+      ),
       body: Container(
         height: size.height,
         width: size.width,
-        padding:
-            EdgeInsets.only(top: size.height * 0.08, left: size.width * 0.05),
+        // padding:
+        //     EdgeInsets.only(top: size.height * 0.08, left: size.width * 0.05),
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Settings',
-              style: kSubHeadTextStyle.copyWith(fontWeight: FontWeight.bold),
-            ),
             SizedBox(
-              height: size.height * 0.07,
+              height: size.height * 0.007,
             ),
             ListTile(
               contentPadding:
